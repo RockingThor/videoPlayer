@@ -4,6 +4,7 @@ import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/videoplayer";
 import { Slider } from "./components/ui/slider";
 import { Timestamps } from "./components/timestamps";
+import { ModeToggle } from "./components/theme/mode-toggle";
 
 const App = () => {
   const videoElement = useRef(null);
@@ -16,7 +17,10 @@ const App = () => {
     toggleMute,
   } = useVideoPlayer(videoElement);
   return (
-    <div className="container">
+    <div className="container relative">
+      <div className="absolute bottom-0 left-0 p-4">
+        <ModeToggle />
+      </div>
       <div className="video-wrapper">
         <video
           src={video}

@@ -23,8 +23,8 @@ const useVideoPlayer = (videoElement: React.RefObject<HTMLVideoElement>) => {
 
   const handleOnTimeUpdate = () => {
     const progress =
-      ((videoElement?.current?.currentTime || 0) /
-        (videoElement?.current?.duration || 1)) *
+      ((videoElement?.current?.currentTime || 1) /
+        (videoElement?.current?.duration || 100)) *
       100;
     setPlayerState({
       ...playerState,
@@ -32,8 +32,9 @@ const useVideoPlayer = (videoElement: React.RefObject<HTMLVideoElement>) => {
     });
   };
 
-  const handleVideoProgress = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const manualChange = Number(event.target.value);
+  const handleVideoProgress = (event: number[]) => {
+    console.log(event);
+    const manualChange = Number(event[0]);
     if (videoElement?.current?.currentTime) {
       videoElement.current.currentTime =
         (videoElement.current.duration / 100) * manualChange;

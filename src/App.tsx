@@ -2,10 +2,8 @@ import { useRef } from "react";
 import "./App.css";
 import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/videoplayer";
-<link
-  href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-  rel="stylesheet"
-/>;
+import { Slider } from "./components/ui/slider";
+import { Timestamps } from "./components/timestamps";
 
 const App = () => {
   const videoElement = useRef(null);
@@ -35,12 +33,20 @@ const App = () => {
               )}
             </button>
           </div>
-          <input
+          {/* <input
             type="range"
             min="0"
             max="100"
             value={playerState.progress}
             onChange={(e) => handleVideoProgress(e)}
+          /> */}
+          <Slider
+            className="w-80"
+            max={100}
+            min={0}
+            value={[playerState.progress]}
+            step={1}
+            onValueChange={(e) => handleVideoProgress(e)}
           />
           <select
             className="velocity"
@@ -61,6 +67,7 @@ const App = () => {
           </button>
         </div>
       </div>
+      <Timestamps />
     </div>
   );
 };
